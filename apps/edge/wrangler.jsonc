@@ -1,0 +1,19 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "liltcall-edge-local",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-23",
+  "workers_dev": true,
+  "durable_objects": {
+    "bindings": [{ "name": "ROOMS", "class_name": "Room" }]
+  },
+  "ratelimits": [{
+    "name": "ROOM_CREATION_LIMIT",
+    "namespace_id": "90423617",
+    "simple": { "limit": 20, "period": 60 }
+  }],
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["Room"] }],
+  "vars": {
+    "APP_ORIGIN": "http://127.0.0.1:5187"
+  }
+}

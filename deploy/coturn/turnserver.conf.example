@@ -1,0 +1,36 @@
+# Run coturn alongside existing services; do not bind their 80/443 ports.
+listening-ip=REPLACE_PRIVATE_IP
+relay-ip=REPLACE_PRIVATE_IP
+external-ip=REPLACE_PUBLIC_IP/REPLACE_PRIVATE_IP
+listening-port=3478
+min-port=49160
+max-port=49200
+
+realm=liltcall
+fingerprint
+use-auth-secret
+static-auth-secret=REPLACE_WITH_FRESH_64_HEX_SECRET
+
+# A small, bounded deployment for one 2C/4G shared server.
+user-quota=2
+total-quota=12
+max-bps=1000000
+bps-capacity=4000000
+
+# TURN credentials must not grant access to the server's private network.
+denied-peer-ip=0.0.0.0-0.255.255.255
+denied-peer-ip=10.0.0.0-10.255.255.255
+denied-peer-ip=100.64.0.0-100.127.255.255
+denied-peer-ip=127.0.0.0-127.255.255.255
+denied-peer-ip=169.254.0.0-169.254.255.255
+denied-peer-ip=172.16.0.0-172.31.255.255
+denied-peer-ip=192.168.0.0-192.168.255.255
+denied-peer-ip=224.0.0.0-255.255.255.255
+no-multicast-peers
+
+# No certificate or spare 443 listener is available on this shared host.
+no-tls
+no-dtls
+no-cli
+no-rfc5780
+log-file=syslog

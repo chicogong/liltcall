@@ -1,0 +1,8 @@
+# Copy to apps/edge/.dev.vars only for local TURN testing (never commit real values).
+# Choose one provider. Generate a fresh 32-byte hex secret for coturn; never reuse
+# the old WebRTC-p2p credentials. COTURN_HOST is a public DNS name or IPv4 address.
+COTURN_HOST=turn.example.org
+COTURN_AUTH_SECRET=replace-with-new-64-character-hex-secret
+# Alternatively, use Cloudflare Realtime TURN (requires a separate subscription):
+# TURN_KEY_ID=replace-with-new-32-character-turn-key-id
+# TURN_KEY_API_TOKEN=replace-with-new-turn-key-api-token
