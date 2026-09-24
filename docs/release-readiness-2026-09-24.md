@@ -1,4 +1,4 @@
-# 本地开源发布核对（2026-09-24）
+# 开源首发核对（2026-09-24）
 
 本文件记录**开源首发审查与测试边界**，不是公网 AI 已上线、双向真人跨网通话已验收的证明。首发范围是 human-only 1:1 音视频源码；`/ai.html` 仍是独立的私有原型。
 
@@ -12,13 +12,13 @@
 
 ## 凭据与依赖审查
 
-- 对本地目录运行 `gitleaks dir . --redact --no-banner`：报告 **2 个需人工核对的匹配**，分别是 `apps/ai/streaming_cloud.py:80` 的代码参数名 `secret_key`、`deploy/coturn/turnserver.conf.example:12` 的大写替换占位符；核对后均不是实际凭据。通用模式的文件名扫描还命中两个 `.example` 配置，内容是替换提示。未发现需要提交的 `.env.local`、`.dev.vars`、私钥文件；`.gitignore` 对这些路径有规则。扫描不是无泄漏保证，也**没有 Git 历史可扫**：首次提交后、公开前必须重新跑工作树和历史扫描，人工检查命中项，不应对整类文件做宽泛豁免。
+- 首发前对暂存区与单提交 Git 历史运行 `gitleaks`：均报告 **2 个需人工核对的匹配**，分别是 `apps/ai/streaming_cloud.py:80` 的代码参数名 `secret_key`、`deploy/coturn/turnserver.conf.example:12` 的大写替换占位符；核对后均不是实际凭据。未提交 `.env.local`、`.dev.vars`、私钥或本地 `docs/.private/`；`.gitignore` 有对应规则。扫描不是无泄漏保证，未来提交仍需重新核对。
 - `package-lock.json` 当前有 180 个依赖包条目且均有许可证元数据；主要是 MIT、Apache-2.0、ISC、BSD、0BSD、CC0 等。开发工具链的 `sharp`/`libvips` 平台包含 LGPL-3.0-or-later 条款；这些二进制没有放进源码仓库。若将来发布打包应用或镜像，需要按实际分发物重新做完整归因与义务审查。
 - 当前本机 AI 虚拟环境有 105 个发行包。直接依赖的 FastAPI、Pipecat、Uvicorn、腾讯云 SDK、websockets 等在已安装元数据中为 MIT/BSD/Apache 类；`pocket-tts` 的已安装包未填许可元数据，其[上游源码许可](https://github.com/kyutai-labs/pocket-tts/blob/main/LICENSE)为 MIT，但**声音/模型资源需另查各自条款**。间接依赖 `num2words` 和 [`soxr`](https://github.com/dofuuz/python-soxr) 带 LGPL；本仓库不打包它们的源码或 wheel。此清单不是所有可选 Python 依赖及其资源的完整 SBOM。
 
 ## 已处理的发布前风险与未完成的体验验收
 
-1. GitHub 目标为 `chicogong/liltcall`，首发采用一个 initial commit。先建公开空仓库、启用并核验私密漏洞报告，再推源码；推送后的仓库状态以 GitHub 为准。
+1. 已创建公开仓库 [`chicogong/liltcall`](https://github.com/chicogong/liltcall)，首发为单个 initial commit `3c8f5cf`。源码推送前已在公开空仓库启用并核验 GitHub 私密漏洞报告；远端提交哈希和 README 已读回。首发 [GitHub CI](https://github.com/chicogong/liltcall/actions/runs/35990172738) 通过，未因此重新部署测试站。
 2. 公开的默认 Wrangler 配置改为本地配置，不再绑定现用自定义域名；部署需从忽略的生产配置模板明确替换域名与密钥。每房间待用票据上限 12，单连接 10 秒信令消息上限 120；它们是局部滥用刹车，不是全局费用上限。
 3. 本机干净副本已完成重新安装与自动化复现；仍需让不熟悉项目的人在另一台机器按文档独立启动，并用不同真实设备/网络做**双向真人**音视频验收，留匿名指标。同机合成媒体、生产强制 TURN 及单向手机反馈不能替代这一关。
 4. 若要对外介绍 AI 流式能力，先核对实时 ASR/TTS 额度与后付费、在受控私有环境做真实闭环和延迟/打断/失败测试；目前不能宣称其已部署、已达到延迟目标或可供公网使用。
@@ -31,4 +31,4 @@
 
 2026-09-24：从仓库的 **115 个未忽略候选文件**复制到全新临时目录，不复制 `.git`、`node_modules`、`.venv`、本机 `.env`/`.dev.vars` 或私钥。副本中 `npm ci` 从空 `node_modules` 安装 78 个适用当前平台的包，`uv sync --extra cloud` 从空 `.venv` 安装 75 个包；Playwright Chromium/WebKit 安装检查通过。随后类型检查、构建、前端单测 31/31、Python 合同测试 27/27、常规浏览器端到端 32 通过/1 按配置跳过、无模型 AI 音频探针 4/4、本地 coturn 强制中转 1/1，全部在副本中通过。
 
-这验证的是**同一台 Mac 上的干净项目目录**，安装仍可使用机器级 npm/uv/浏览器缓存和已装的 `turnserver`，不等于无缓存安装、Linux CI、新人复现或真实跨网通话。额外尝试的 Python Playwright 页面冒烟因其单独的 36.9 MiB 工具包下载持续无进展而中止；项目自带的 Chromium/WebKit 端到端套件已实际打开并操作页面，此项未完成的重复检查不计入通过。未触发真实云 AI 调用或公网测试。
+这验证的是**同一台 Mac 上的干净项目目录**，安装仍可使用机器级 npm/uv/浏览器缓存和已装的 `turnserver`，不等于无缓存安装、新人复现或真实跨网通话。首发提交随后在 GitHub Linux CI 完成 `npm ci`、类型检查、单测、构建和浏览器 E2E。额外尝试的 Python Playwright 页面冒烟因其单独的 36.9 MiB 工具包下载持续无进展而中止；项目自带的 Chromium/WebKit 端到端套件已实际打开并操作页面，此项未完成的重复检查不计入通过。未触发真实云 AI 调用或公网测试。

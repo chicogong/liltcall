@@ -4,7 +4,7 @@ LiltCall is a small, inspectable two-person WebRTC call project. The public huma
 
 ## Start locally
 
-Follow [Run locally](README.md#run-locally) for the web UI and Worker. The AI prototype has its own [local setup guide](docs/ai-local-spike.md); ordinary contributors do not need cloud credentials or a paid account.
+Follow [本地运行](README.md#本地运行) for the web UI and Worker. The AI prototype has its own [local setup guide](docs/ai-local-spike.md); ordinary contributors do not need cloud credentials or a paid account.
 
 Before opening a pull request, run the checks relevant to your change:
 
