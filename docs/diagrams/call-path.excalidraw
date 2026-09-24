@@ -2,50 +2,503 @@
   "type": "excalidraw",
   "version": 2,
   "source": "https://excalidraw.com",
-  "appState": { "viewBackgroundColor": "#ffffff", "gridSize": null, "currentItemFontFamily": 8 },
+  "appState": {
+    "viewBackgroundColor": "#ffffff",
+    "gridSize": null,
+    "currentItemFontFamily": 8
+  },
   "files": {},
   "elements": [
-    { "type": "text", "id": "title", "x": 44, "y": 24, "width": 760, "height": 52, "text": "LiltCall · 1:1 audio/video path", "originalText": "LiltCall · 1:1 audio/video path", "fontSize": 36, "fontFamily": 8, "lineHeight": 1.25, "strokeColor": "#14213d" },
-    { "type": "text", "id": "subtitle", "x": 46, "y": 80, "width": 1010, "height": 34, "text": "One room, two paths: signaling and media.", "originalText": "One room, two paths: signaling and media.", "fontSize": 22, "fontFamily": 8, "lineHeight": 1.25, "strokeColor": "#475569" },
-    { "type": "rectangle", "id": "status-chip", "x": 944, "y": 35, "width": 212, "height": 50, "backgroundColor": "#fff3bf", "fillStyle": "solid", "strokeColor": "#f59e0b", "strokeWidth": 2, "roundness": { "type": 3 } },
-    { "type": "text", "id": "status-text", "x": 966, "y": 47, "width": 168, "height": 30, "text": "TEST SITE", "originalText": "TEST SITE", "fontSize": 22, "fontFamily": 8, "lineHeight": 1.25, "strokeColor": "#78350f" },
-    { "type": "arrow", "id": "top-rule", "x": 44, "y": 135, "width": 1110, "height": 0, "points": [[0, 0], [1110, 0]], "strokeColor": "#cbd5e1", "strokeWidth": 2, "endArrowhead": null },
-
-    { "type": "text", "id": "control-lane", "x": 48, "y": 155, "width": 840, "height": 31, "text": "01  ROOM + SIGNALING    /    no media on this path", "originalText": "01  ROOM + SIGNALING    /    no media on this path", "fontSize": 21, "fontFamily": 8, "lineHeight": 1.25, "strokeColor": "#334155" },
-    { "type": "rectangle", "id": "host-control", "x": 48, "y": 218, "width": 230, "height": 110, "backgroundColor": "#a5d8ff", "fillStyle": "solid", "strokeColor": "#4a9eed", "strokeWidth": 2, "roundness": { "type": 3 } },
-    { "type": "text", "id": "host-control-text", "x": 68, "y": 230, "width": 195, "height": 87, "text": "Host browser\ncreate room\ncamera + mic", "originalText": "Host browser\ncreate room\ncamera + mic", "fontSize": 19, "fontFamily": 8, "lineHeight": 1.25, "strokeColor": "#14213d" },
-    { "type": "arrow", "id": "host-signal", "x": 278, "y": 267, "width": 164, "height": 0, "points": [[0, 0], [164, 0]], "strokeColor": "#4a9eed", "strokeWidth": 3, "startArrowhead": "arrow", "endArrowhead": "arrow" },
-    { "type": "text", "id": "host-signal-label", "x": 289, "y": 218, "width": 150, "height": 28, "text": "HTTPS / WSS", "originalText": "HTTPS / WSS", "fontSize": 18, "fontFamily": 8, "lineHeight": 1.25, "strokeColor": "#2563a6" },
-    { "type": "rectangle", "id": "worker", "x": 442, "y": 201, "width": 316, "height": 92, "backgroundColor": "#d0bfff", "fillStyle": "solid", "strokeColor": "#8b5cf6", "strokeWidth": 2, "roundness": { "type": 3 } },
-    { "type": "text", "id": "worker-text", "x": 466, "y": 218, "width": 270, "height": 63, "text": "Cloudflare Worker\nAPI + WSS + TURN auth", "originalText": "Cloudflare Worker\nAPI + WSS + TURN auth", "fontSize": 21, "fontFamily": 8, "lineHeight": 1.25, "strokeColor": "#14213d" },
-    { "type": "arrow", "id": "worker-do", "x": 600, "y": 293, "width": 0, "height": 27, "points": [[0, 0], [0, 27]], "strokeColor": "#8b5cf6", "strokeWidth": 3, "endArrowhead": "arrow" },
-    { "type": "rectangle", "id": "room-do", "x": 442, "y": 320, "width": 316, "height": 86, "backgroundColor": "#e5dbff", "fillStyle": "solid", "strokeColor": "#8b5cf6", "strokeWidth": 2, "roundness": { "type": 3 } },
-    { "type": "text", "id": "room-do-text", "x": 465, "y": 330, "width": 275, "height": 69, "text": "Room Durable Object\n2 seats · SDP / ICE", "originalText": "Room Durable Object\n2 seats · SDP / ICE", "fontSize": 20, "fontFamily": 8, "lineHeight": 1.25, "strokeColor": "#14213d" },
-    { "type": "arrow", "id": "guest-signal", "x": 758, "y": 267, "width": 164, "height": 0, "points": [[0, 0], [164, 0]], "strokeColor": "#4a9eed", "strokeWidth": 3, "startArrowhead": "arrow", "endArrowhead": "arrow" },
-    { "type": "text", "id": "guest-signal-label", "x": 772, "y": 218, "width": 150, "height": 28, "text": "HTTPS / WSS", "originalText": "HTTPS / WSS", "fontSize": 18, "fontFamily": 8, "lineHeight": 1.25, "strokeColor": "#2563a6" },
-    { "type": "rectangle", "id": "guest-control", "x": 922, "y": 218, "width": 230, "height": 110, "backgroundColor": "#a5d8ff", "fillStyle": "solid", "strokeColor": "#4a9eed", "strokeWidth": 2, "roundness": { "type": 3 } },
-    { "type": "text", "id": "guest-control-text", "x": 941, "y": 230, "width": 195, "height": 87, "text": "Guest browser\njoin by link\ncamera + mic", "originalText": "Guest browser\njoin by link\ncamera + mic", "fontSize": 19, "fontFamily": 8, "lineHeight": 1.25, "strokeColor": "#14213d" },
-    { "type": "text", "id": "control-note", "x": 51, "y": 370, "width": 376, "height": 50, "text": "Invite secret in URL fragment.\nRoom metadata, never media.", "originalText": "Invite secret in URL fragment.\nRoom metadata, never media.", "fontSize": 18, "fontFamily": 8, "lineHeight": 1.25, "strokeColor": "#475569" },
-
-    { "type": "text", "id": "direct-lane", "x": 48, "y": 435, "width": 860, "height": 31, "text": "02  MEDIA    /    direct WebRTC when ICE selects it", "originalText": "02  MEDIA    /    direct WebRTC when ICE selects it", "fontSize": 21, "fontFamily": 8, "lineHeight": 1.25, "strokeColor": "#334155" },
-    { "type": "rectangle", "id": "host-media", "x": 48, "y": 491, "width": 230, "height": 82, "backgroundColor": "#c3fae8", "fillStyle": "solid", "strokeColor": "#16a34a", "strokeWidth": 2, "roundness": { "type": 3 } },
-    { "type": "text", "id": "host-media-text", "x": 69, "y": 511, "width": 188, "height": 44, "text": "Host audio/video", "originalText": "Host audio/video", "fontSize": 19, "fontFamily": 8, "lineHeight": 1.25, "strokeColor": "#14532d" },
-    { "type": "arrow", "id": "direct-audio", "x": 278, "y": 533, "width": 644, "height": 0, "points": [[0, 0], [644, 0]], "strokeColor": "#16a34a", "strokeWidth": 4, "startArrowhead": "arrow", "endArrowhead": "arrow" },
-    { "type": "text", "id": "direct-label", "x": 470, "y": 487, "width": 260, "height": 33, "text": "P2P A/V · SRTP", "originalText": "P2P A/V · SRTP", "fontSize": 23, "fontFamily": 8, "lineHeight": 1.25, "strokeColor": "#166534" },
-    { "type": "text", "id": "direct-note", "x": 417, "y": 547, "width": 390, "height": 29, "text": "Worker never carries media", "originalText": "Worker never carries media", "fontSize": 18, "fontFamily": 8, "lineHeight": 1.25, "strokeColor": "#166534" },
-    { "type": "rectangle", "id": "guest-media", "x": 922, "y": 491, "width": 230, "height": 82, "backgroundColor": "#c3fae8", "fillStyle": "solid", "strokeColor": "#16a34a", "strokeWidth": 2, "roundness": { "type": 3 } },
-    { "type": "text", "id": "guest-media-text", "x": 942, "y": 511, "width": 190, "height": 44, "text": "Guest audio/video", "originalText": "Guest audio/video", "fontSize": 19, "fontFamily": 8, "lineHeight": 1.25, "strokeColor": "#14532d" },
-
-    { "type": "text", "id": "relay-lane", "x": 48, "y": 615, "width": 870, "height": 31, "text": "03  RELAY    /    when ICE selects TURN", "originalText": "03  RELAY    /    when ICE selects TURN", "fontSize": 21, "fontFamily": 8, "lineHeight": 1.25, "strokeColor": "#334155" },
-    { "type": "rectangle", "id": "host-relay", "x": 48, "y": 669, "width": 230, "height": 77, "backgroundColor": "#fff3bf", "fillStyle": "solid", "strokeColor": "#f59e0b", "strokeWidth": 2, "roundness": { "type": 3 } },
-    { "type": "text", "id": "host-relay-text", "x": 77, "y": 687, "width": 182, "height": 40, "text": "Host browser", "originalText": "Host browser", "fontSize": 22, "fontFamily": 8, "lineHeight": 1.25, "strokeColor": "#78350f" },
-    { "type": "arrow", "id": "to-turn", "x": 278, "y": 707, "width": 162, "height": 0, "points": [[0, 0], [162, 0]], "strokeColor": "#f59e0b", "strokeWidth": 3, "startArrowhead": "arrow", "endArrowhead": "arrow" },
-    { "type": "rectangle", "id": "turn-relay", "x": 440, "y": 661, "width": 320, "height": 94, "backgroundColor": "#ffd8a8", "fillStyle": "solid", "strokeColor": "#f59e0b", "strokeWidth": 2, "roundness": { "type": 3 } },
-    { "type": "text", "id": "turn-relay-text", "x": 462, "y": 674, "width": 275, "height": 70, "text": "Self-hosted coturn\nshort-lived credentials", "originalText": "Self-hosted coturn\nshort-lived credentials", "fontSize": 21, "fontFamily": 8, "lineHeight": 1.25, "strokeColor": "#78350f" },
-    { "type": "arrow", "id": "from-turn", "x": 760, "y": 707, "width": 162, "height": 0, "points": [[0, 0], [162, 0]], "strokeColor": "#f59e0b", "strokeWidth": 3, "startArrowhead": "arrow", "endArrowhead": "arrow" },
-    { "type": "rectangle", "id": "guest-relay", "x": 922, "y": 669, "width": 230, "height": 77, "backgroundColor": "#fff3bf", "fillStyle": "solid", "strokeColor": "#f59e0b", "strokeWidth": 2, "roundness": { "type": 3 } },
-    { "type": "text", "id": "guest-relay-text", "x": 950, "y": 687, "width": 182, "height": 40, "text": "Guest browser", "originalText": "Guest browser", "fontSize": 22, "fontFamily": 8, "lineHeight": 1.25, "strokeColor": "#78350f" },
-    { "type": "rectangle", "id": "footer", "x": 46, "y": 790, "width": 1108, "height": 88, "backgroundColor": "#fff3bf", "fillStyle": "solid", "strokeColor": "#f59e0b", "strokeWidth": 2, "roundness": { "type": 3 } },
-    { "type": "text", "id": "footer-text", "x": 68, "y": 802, "width": 1065, "height": 69, "text": "TESTED: public synthetic A/V passed direct and forced TURN/TCP.\nOPEN: two-way real-device call, reliability and mouth-to-ear latency.", "originalText": "TESTED: public synthetic A/V passed direct and forced TURN/TCP.\nOPEN: two-way real-device call, reliability and mouth-to-ear latency.", "fontSize": 19, "fontFamily": 8, "lineHeight": 1.25, "strokeColor": "#78350f" }
+    {
+      "type": "text",
+      "id": "title",
+      "x": 40,
+      "y": 24,
+      "width": 960,
+      "height": 46,
+      "text": "LiltCall · 双人通话如何连接",
+      "originalText": "LiltCall · 双人通话如何连接",
+      "fontSize": 32,
+      "fontFamily": 8,
+      "lineHeight": 1.25,
+      "strokeColor": "#172033"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "x": 42,
+      "y": 70,
+      "width": 1010,
+      "height": 30,
+      "text": "两条通道各做一件事：信令负责找人，WebRTC 负责传音视频。",
+      "originalText": "两条通道各做一件事：信令负责找人，WebRTC 负责传音视频。",
+      "fontSize": 19,
+      "fontFamily": 8,
+      "lineHeight": 1.25,
+      "strokeColor": "#475569"
+    },
+    {
+      "type": "rectangle",
+      "id": "signal-zone",
+      "x": 30,
+      "y": 124,
+      "width": 1040,
+      "height": 230,
+      "backgroundColor": "#f5f3ff",
+      "fillStyle": "solid",
+      "strokeColor": "#c4b5fd",
+      "strokeWidth": 2,
+      "roundness": {
+        "type": 3
+      }
+    },
+    {
+      "type": "text",
+      "id": "signal-head",
+      "x": 54,
+      "y": 138,
+      "width": 900,
+      "height": 30,
+      "text": "01  房间与信令 · 不传音视频",
+      "originalText": "01  房间与信令 · 不传音视频",
+      "fontSize": 22,
+      "fontFamily": 8,
+      "lineHeight": 1.25,
+      "strokeColor": "#6d28d9"
+    },
+    {
+      "type": "rectangle",
+      "id": "host-signal",
+      "x": 54,
+      "y": 204,
+      "width": 190,
+      "height": 74,
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeColor": "#3b82f6",
+      "strokeWidth": 2,
+      "roundness": {
+        "type": 3
+      }
+    },
+    {
+      "type": "text",
+      "id": "host-signal-text",
+      "x": 78,
+      "y": 220,
+      "width": 155,
+      "height": 48,
+      "text": "房主浏览器\n创建房间",
+      "originalText": "房主浏览器\n创建房间",
+      "fontSize": 20,
+      "fontFamily": 8,
+      "lineHeight": 1.25,
+      "strokeColor": "#172033"
+    },
+    {
+      "type": "arrow",
+      "id": "host-to-worker",
+      "x": 244,
+      "y": 241,
+      "width": 171,
+      "height": 0,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          171,
+          0
+        ]
+      ],
+      "strokeColor": "#3b82f6",
+      "strokeWidth": 3,
+      "startArrowhead": "arrow",
+      "endArrowhead": "arrow"
+    },
+    {
+      "type": "text",
+      "id": "host-signal-label",
+      "x": 270,
+      "y": 198,
+      "width": 135,
+      "height": 27,
+      "text": "HTTPS / WSS",
+      "originalText": "HTTPS / WSS",
+      "fontSize": 17,
+      "fontFamily": 8,
+      "lineHeight": 1.25,
+      "strokeColor": "#2563eb"
+    },
+    {
+      "type": "rectangle",
+      "id": "worker",
+      "x": 415,
+      "y": 194,
+      "width": 250,
+      "height": 90,
+      "backgroundColor": "#ede9fe",
+      "fillStyle": "solid",
+      "strokeColor": "#8b5cf6",
+      "strokeWidth": 2,
+      "roundness": {
+        "type": 3
+      }
+    },
+    {
+      "type": "text",
+      "id": "worker-text",
+      "x": 437,
+      "y": 209,
+      "width": 220,
+      "height": 58,
+      "text": "Cloudflare Worker\nAPI + WebSocket",
+      "originalText": "Cloudflare Worker\nAPI + WebSocket",
+      "fontSize": 20,
+      "fontFamily": 8,
+      "lineHeight": 1.25,
+      "strokeColor": "#172033"
+    },
+    {
+      "type": "arrow",
+      "id": "worker-to-guest",
+      "x": 665,
+      "y": 241,
+      "width": 176,
+      "height": 0,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          176,
+          0
+        ]
+      ],
+      "strokeColor": "#3b82f6",
+      "strokeWidth": 3,
+      "startArrowhead": "arrow",
+      "endArrowhead": "arrow"
+    },
+    {
+      "type": "text",
+      "id": "guest-signal-label",
+      "x": 688,
+      "y": 198,
+      "width": 135,
+      "height": 27,
+      "text": "HTTPS / WSS",
+      "originalText": "HTTPS / WSS",
+      "fontSize": 17,
+      "fontFamily": 8,
+      "lineHeight": 1.25,
+      "strokeColor": "#2563eb"
+    },
+    {
+      "type": "rectangle",
+      "id": "guest-signal",
+      "x": 841,
+      "y": 204,
+      "width": 190,
+      "height": 74,
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeColor": "#3b82f6",
+      "strokeWidth": 2,
+      "roundness": {
+        "type": 3
+      }
+    },
+    {
+      "type": "text",
+      "id": "guest-signal-text",
+      "x": 864,
+      "y": 220,
+      "width": 150,
+      "height": 48,
+      "text": "来宾浏览器\n通过链接加入",
+      "originalText": "来宾浏览器\n通过链接加入",
+      "fontSize": 20,
+      "fontFamily": 8,
+      "lineHeight": 1.25,
+      "strokeColor": "#172033"
+    },
+    {
+      "type": "arrow",
+      "id": "worker-to-room",
+      "x": 540,
+      "y": 284,
+      "width": 0,
+      "height": 20,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          20
+        ]
+      ],
+      "strokeColor": "#8b5cf6",
+      "strokeWidth": 3,
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "type": "rectangle",
+      "id": "room",
+      "x": 415,
+      "y": 304,
+      "width": 250,
+      "height": 42,
+      "backgroundColor": "#e9d5ff",
+      "fillStyle": "solid",
+      "strokeColor": "#8b5cf6",
+      "strokeWidth": 2,
+      "roundness": {
+        "type": 3
+      }
+    },
+    {
+      "type": "text",
+      "id": "room-text",
+      "x": 433,
+      "y": 310,
+      "width": 226,
+      "height": 30,
+      "text": "Room DO · 两个席位",
+      "originalText": "Room DO · 两个席位",
+      "fontSize": 19,
+      "fontFamily": 8,
+      "lineHeight": 1.25,
+      "strokeColor": "#172033"
+    },
+    {
+      "type": "text",
+      "id": "control-note",
+      "x": 52,
+      "y": 303,
+      "width": 330,
+      "height": 35,
+      "text": "邀请密钥在 URL 片段中",
+      "originalText": "邀请密钥在 URL 片段中",
+      "fontSize": 17,
+      "fontFamily": 8,
+      "lineHeight": 1.25,
+      "strokeColor": "#475569"
+    },
+    {
+      "type": "rectangle",
+      "id": "media-zone",
+      "x": 30,
+      "y": 375,
+      "width": 1040,
+      "height": 250,
+      "backgroundColor": "#f0fdf4",
+      "fillStyle": "solid",
+      "strokeColor": "#86efac",
+      "strokeWidth": 2,
+      "roundness": {
+        "type": 3
+      }
+    },
+    {
+      "type": "text",
+      "id": "media-head",
+      "x": 54,
+      "y": 390,
+      "width": 900,
+      "height": 30,
+      "text": "02  媒体路径 · ICE 选择直连或中转",
+      "originalText": "02  媒体路径 · ICE 选择直连或中转",
+      "fontSize": 22,
+      "fontFamily": 8,
+      "lineHeight": 1.25,
+      "strokeColor": "#15803d"
+    },
+    {
+      "type": "rectangle",
+      "id": "host-media",
+      "x": 54,
+      "y": 440,
+      "width": 190,
+      "height": 145,
+      "backgroundColor": "#dcfce7",
+      "fillStyle": "solid",
+      "strokeColor": "#16a34a",
+      "strokeWidth": 2,
+      "roundness": {
+        "type": 3
+      }
+    },
+    {
+      "type": "text",
+      "id": "host-media-text",
+      "x": 86,
+      "y": 482,
+      "width": 140,
+      "height": 60,
+      "text": "房主\n麦克风/摄像头",
+      "originalText": "房主\n麦克风/摄像头",
+      "fontSize": 19,
+      "fontFamily": 8,
+      "lineHeight": 1.25,
+      "strokeColor": "#172033"
+    },
+    {
+      "type": "rectangle",
+      "id": "guest-media",
+      "x": 841,
+      "y": 440,
+      "width": 190,
+      "height": 145,
+      "backgroundColor": "#dcfce7",
+      "fillStyle": "solid",
+      "strokeColor": "#16a34a",
+      "strokeWidth": 2,
+      "roundness": {
+        "type": 3
+      }
+    },
+    {
+      "type": "text",
+      "id": "guest-media-text",
+      "x": 872,
+      "y": 482,
+      "width": 150,
+      "height": 60,
+      "text": "来宾\n扬声器/画面",
+      "originalText": "来宾\n扬声器/画面",
+      "fontSize": 19,
+      "fontFamily": 8,
+      "lineHeight": 1.25,
+      "strokeColor": "#172033"
+    },
+    {
+      "type": "arrow",
+      "id": "direct",
+      "x": 244,
+      "y": 467,
+      "width": 597,
+      "height": 0,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          597,
+          0
+        ]
+      ],
+      "strokeColor": "#16a34a",
+      "strokeWidth": 3,
+      "startArrowhead": "arrow",
+      "endArrowhead": "arrow"
+    },
+    {
+      "type": "text",
+      "id": "direct-label",
+      "x": 411,
+      "y": 428,
+      "width": 300,
+      "height": 30,
+      "text": "直连 P2P · 加密媒体",
+      "originalText": "直连 P2P · 加密媒体",
+      "fontSize": 20,
+      "fontFamily": 8,
+      "lineHeight": 1.25,
+      "strokeColor": "#166534"
+    },
+    {
+      "type": "arrow",
+      "id": "host-turn",
+      "x": 244,
+      "y": 550,
+      "width": 170,
+      "height": 0,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          170,
+          0
+        ]
+      ],
+      "strokeColor": "#ea580c",
+      "strokeWidth": 3,
+      "startArrowhead": "arrow",
+      "endArrowhead": "arrow"
+    },
+    {
+      "type": "rectangle",
+      "id": "turn",
+      "x": 414,
+      "y": 516,
+      "width": 252,
+      "height": 70,
+      "backgroundColor": "#ffedd5",
+      "fillStyle": "solid",
+      "strokeColor": "#f97316",
+      "strokeWidth": 2,
+      "roundness": {
+        "type": 3
+      }
+    },
+    {
+      "type": "text",
+      "id": "turn-text",
+      "x": 445,
+      "y": 529,
+      "width": 210,
+      "height": 50,
+      "text": "自建 coturn\n仅在选中 relay 时中转",
+      "originalText": "自建 coturn\n仅在选中 relay 时中转",
+      "fontSize": 17,
+      "fontFamily": 8,
+      "lineHeight": 1.25,
+      "strokeColor": "#9a3412"
+    },
+    {
+      "type": "arrow",
+      "id": "turn-guest",
+      "x": 666,
+      "y": 550,
+      "width": 175,
+      "height": 0,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          175,
+          0
+        ]
+      ],
+      "strokeColor": "#ea580c",
+      "strokeWidth": 3,
+      "startArrowhead": "arrow",
+      "endArrowhead": "arrow"
+    },
+    {
+      "type": "text",
+      "id": "media-note",
+      "x": 420,
+      "y": 592,
+      "width": 600,
+      "height": 25,
+      "text": "Worker 不承载音视频；STUN 也不是中转。",
+      "originalText": "Worker 不承载音视频；STUN 也不是中转。",
+      "fontSize": 17,
+      "fontFamily": 8,
+      "lineHeight": 1.25,
+      "strokeColor": "#475569"
+    }
   ]
 }

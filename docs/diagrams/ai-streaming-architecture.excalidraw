@@ -2,51 +2,402 @@
   "type": "excalidraw",
   "version": 2,
   "source": "https://excalidraw.com",
-  "appState": {"viewBackgroundColor": "#ffffff", "gridSize": null, "currentItemFontFamily": 8},
+  "appState": {
+    "viewBackgroundColor": "#ffffff",
+    "gridSize": null,
+    "currentItemFontFamily": 8
+  },
   "files": {},
   "elements": [
-    {"type":"text","id":"title","x":62,"y":27,"width":1050,"height":43,"text":"LiltCall  /  通话与私有 AI 的两条媒体路径","originalText":"LiltCall  /  通话与私有 AI 的两条媒体路径","fontSize":31,"fontFamily":8,"lineHeight":1.25,"strokeColor":"#14213d"},
-    {"type":"text","id":"subtitle","x":64,"y":79,"width":1050,"height":31,"text":"控制面与媒体面分离；AI 只有显式进入独立的 1:1 模式才接收语音","originalText":"控制面与媒体面分离；AI 只有显式进入独立的 1:1 模式才接收语音","fontSize":18,"fontFamily":8,"lineHeight":1.25,"strokeColor":"#475569"},
-
-    {"type":"rectangle","id":"human-zone","x":60,"y":135,"width":1080,"height":172,"backgroundColor":"#effaf1","fillStyle":"solid","strokeColor":"#86c69b","strokeWidth":2,"roughness":0,"roundness":{"type":3}},
-    {"type":"text","id":"human-label","x":89,"y":154,"width":860,"height":31,"text":"01   真人双人通话  ·  公网路径","originalText":"01   真人双人通话  ·  公网路径","fontSize":22,"fontFamily":8,"lineHeight":1.25,"strokeColor":"#15803d"},
-    {"type":"rectangle","id":"human-a","x":96,"y":211,"width":230,"height":58,"backgroundColor":"#b2f2bb","fillStyle":"solid","strokeColor":"#22c55e","strokeWidth":2,"roughness":0,"roundness":{"type":3}},
-    {"type":"text","id":"human-a-t","x":145,"y":224,"width":145,"height":29,"text":"浏览器 A","originalText":"浏览器 A","fontSize":21,"fontFamily":8,"lineHeight":1.25,"strokeColor":"#14213d"},
-    {"type":"arrow","id":"human-a-route","x":326,"y":240,"width":112,"height":0,"points":[[0,0],[112,0]],"strokeColor":"#16a34a","strokeWidth":3,"roughness":0,"startArrowhead":"arrow","endArrowhead":"arrow"},
-    {"type":"rectangle","id":"human-route","x":438,"y":211,"width":260,"height":58,"backgroundColor":"#ffffff","fillStyle":"solid","strokeColor":"#22c55e","strokeWidth":2,"roughness":0,"roundness":{"type":3}},
-    {"type":"text","id":"human-route-t","x":461,"y":226,"width":218,"height":29,"text":"WebRTC / TURN","originalText":"WebRTC / TURN","fontSize":20,"fontFamily":8,"lineHeight":1.25,"strokeColor":"#15803d"},
-    {"type":"arrow","id":"human-route-b","x":698,"y":240,"width":112,"height":0,"points":[[0,0],[112,0]],"strokeColor":"#16a34a","strokeWidth":3,"roughness":0,"startArrowhead":"arrow","endArrowhead":"arrow"},
-    {"type":"rectangle","id":"human-b","x":810,"y":211,"width":230,"height":58,"backgroundColor":"#b2f2bb","fillStyle":"solid","strokeColor":"#22c55e","strokeWidth":2,"roughness":0,"roundness":{"type":3}},
-    {"type":"text","id":"human-b-t","x":859,"y":224,"width":145,"height":29,"text":"浏览器 B","originalText":"浏览器 B","fontSize":21,"fontFamily":8,"lineHeight":1.25,"strokeColor":"#14213d"},
-    {"type":"text","id":"human-note","x":94,"y":280,"width":1000,"height":22,"text":"Worker + Room Durable Object 只管房间与信令；真人通话不经过 AI 服务","originalText":"Worker + Room Durable Object 只管房间与信令；真人通话不经过 AI 服务","fontSize":17,"fontFamily":8,"lineHeight":1.25,"strokeColor":"#475569"},
-
-    {"type":"rectangle","id":"ai-zone","x":60,"y":343,"width":1080,"height":385,"backgroundColor":"#f5f1ff","fillStyle":"solid","strokeColor":"#ac95e9","strokeWidth":2,"roughness":0,"roundness":{"type":3}},
-    {"type":"text","id":"ai-label","x":89,"y":362,"width":945,"height":31,"text":"02   私有 1:1 AI  ·  server.py 回环入口 / WebRTC 媒体","originalText":"02   私有 1:1 AI  ·  server.py 回环入口 / WebRTC 媒体","fontSize":22,"fontFamily":8,"lineHeight":1.25,"strokeColor":"#6d28d9"},
-    {"type":"rectangle","id":"provider-zone","x":477,"y":417,"width":646,"height":179,"backgroundColor":"#fff9eb","fillStyle":"solid","strokeColor":"#f3c875","strokeWidth":1,"roughness":0,"roundness":{"type":3}},
-    {"type":"text","id":"provider-label","x":493,"y":433,"width":610,"height":24,"text":"外部服务  ·  三段均流式；稳定句段之后才启动 LLM","originalText":"外部服务  ·  三段均流式；稳定句段之后才启动 LLM","fontSize":17,"fontFamily":8,"lineHeight":1.25,"strokeColor":"#92400e"},
-    {"type":"rectangle","id":"browser","x":89,"y":475,"width":190,"height":175,"backgroundColor":"#a5d8ff","fillStyle":"solid","strokeColor":"#4a9eed","strokeWidth":2,"roughness":0,"roundness":{"type":3}},
-    {"type":"text","id":"browser-t","x":105,"y":500,"width":158,"height":118,"text":"浏览器\n麦克风 / 扬声器\nWebRTC 音频","originalText":"浏览器\n麦克风 / 扬声器\nWebRTC 音频","fontSize":18,"fontFamily":8,"lineHeight":1.35,"strokeColor":"#14213d"},
-    {"type":"arrow","id":"mic-ingress","x":279,"y":530,"width":28,"height":0,"points":[[0,0],[28,0]],"strokeColor":"#4a9eed","strokeWidth":3,"roughness":0,"endArrowhead":"arrow"},
-    {"type":"rectangle","id":"ingress","x":307,"y":477,"width":150,"height":99,"backgroundColor":"#c3fae8","fillStyle":"solid","strokeColor":"#06b6d4","strokeWidth":2,"roughness":0,"roundness":{"type":3}},
-    {"type":"text","id":"ingress-t","x":318,"y":489,"width":130,"height":77,"text":"Pipecat 入口\nserver.py\nWebRTC → PCM","originalText":"Pipecat 入口\nserver.py\nWebRTC → PCM","fontSize":17,"fontFamily":8,"lineHeight":1.25,"strokeColor":"#14213d"},
-    {"type":"arrow","id":"ingress-asr","x":457,"y":530,"width":35,"height":0,"points":[[0,0],[35,0]],"strokeColor":"#4a9eed","strokeWidth":3,"roughness":0,"endArrowhead":"arrow"},
-    {"type":"rectangle","id":"asr","x":492,"y":477,"width":190,"height":99,"backgroundColor":"#ffd8a8","fillStyle":"solid","strokeColor":"#f59e0b","strokeWidth":2,"roughness":0,"roundness":{"type":3}},
-    {"type":"text","id":"asr-t","x":507,"y":489,"width":164,"height":77,"text":"腾讯云实时 ASR\nTencentRealtimeSTT\n200 ms PCM","originalText":"腾讯云实时 ASR\nTencentRealtimeSTT\n200 ms PCM","fontSize":16,"fontFamily":8,"lineHeight":1.25,"strokeColor":"#14213d"},
-    {"type":"arrow","id":"asr-llm","x":682,"y":530,"width":30,"height":0,"points":[[0,0],[30,0]],"strokeColor":"#8b5cf6","strokeWidth":3,"roughness":0,"endArrowhead":"arrow"},
-    {"type":"rectangle","id":"llm","x":712,"y":477,"width":180,"height":99,"backgroundColor":"#d0bfff","fillStyle":"solid","strokeColor":"#8b5cf6","strokeWidth":2,"roughness":0,"roundness":{"type":3}},
-    {"type":"text","id":"llm-t","x":726,"y":489,"width":154,"height":77,"text":"硅基流动 Qwen\nOpenAILLMService\nSSE 文本帧","originalText":"硅基流动 Qwen\nOpenAILLMService\nSSE 文本帧","fontSize":16,"fontFamily":8,"lineHeight":1.25,"strokeColor":"#14213d"},
-    {"type":"arrow","id":"llm-tts","x":892,"y":530,"width":30,"height":0,"points":[[0,0],[30,0]],"strokeColor":"#8b5cf6","strokeWidth":3,"roughness":0,"endArrowhead":"arrow"},
-    {"type":"rectangle","id":"tts","x":922,"y":477,"width":191,"height":99,"backgroundColor":"#ffd8a8","fillStyle":"solid","strokeColor":"#f59e0b","strokeWidth":2,"roughness":0,"roundness":{"type":3}},
-    {"type":"text","id":"tts-t","x":938,"y":489,"width":165,"height":77,"text":"腾讯云流式 TTS\nTencentFlowingTTS\n文本 → PCM","originalText":"腾讯云流式 TTS\nTencentFlowingTTS\n文本 → PCM","fontSize":16,"fontFamily":8,"lineHeight":1.25,"strokeColor":"#14213d"},
-    {"type":"arrow","id":"tts-return","x":1013,"y":576,"width":-151,"height":86,"points":[[0,0],[0,86],[-151,86]],"strokeColor":"#06b6d4","strokeWidth":3,"roughness":0,"endArrowhead":"arrow"},
-    {"type":"rectangle","id":"webrtc-out","x":562,"y":624,"width":300,"height":75,"backgroundColor":"#c3fae8","fillStyle":"solid","strokeColor":"#06b6d4","strokeWidth":2,"roughness":0,"roundness":{"type":3}},
-    {"type":"text","id":"webrtc-out-t","x":586,"y":640,"width":255,"height":50,"text":"Pipecat / WebRTC 输出\nPCM 分块立即返回","originalText":"Pipecat / WebRTC 输出\nPCM 分块立即返回","fontSize":18,"fontFamily":8,"lineHeight":1.25,"strokeColor":"#14213d"},
-    {"type":"arrow","id":"out-browser","x":562,"y":663,"width":-283,"height":-51,"points":[[0,0],[-283,-51]],"strokeColor":"#06b6d4","strokeWidth":3,"roughness":0,"endArrowhead":"arrow"},
-    {"type":"text","id":"ai-note","x":90,"y":706,"width":950,"height":21,"text":"cloud_voice_pipeline.py 组装；不属于公开真人房间，也不开放公网 AI 端口","originalText":"cloud_voice_pipeline.py 组装；不属于公开真人房间，也不开放公网 AI 端口","fontSize":16,"fontFamily":8,"lineHeight":1.25,"strokeColor":"#475569"},
-
-    {"type":"rectangle","id":"guard","x":60,"y":759,"width":504,"height":94,"backgroundColor":"#fff3bf","fillStyle":"solid","strokeColor":"#f59e0b","strokeWidth":2,"roughness":0,"roundness":{"type":3}},
-    {"type":"text","id":"guard-t","x":82,"y":775,"width":455,"height":66,"text":"费用闸门  /  配置 + 流式适配器\n双显式开关 · 45 s 音频 · 3 轮 · 120 字","originalText":"费用闸门  /  配置 + 流式适配器\n双显式开关 · 45 s 音频 · 3 轮 · 120 字","fontSize":18,"fontFamily":8,"lineHeight":1.25,"strokeColor":"#78350f"},
-    {"type":"rectangle","id":"metrics","x":599,"y":759,"width":541,"height":94,"backgroundColor":"#eebefa","fillStyle":"solid","strokeColor":"#8b5cf6","strokeWidth":2,"roughness":0,"roundness":{"type":3}},
-    {"type":"text","id":"metrics-t","x":620,"y":775,"width":494,"height":66,"text":"观测  /  voice_observability.py + cloud_timing.py\nASR 完成 · 首段文本 · 首帧 PCM；不存录音","originalText":"观测  /  voice_observability.py + cloud_timing.py\nASR 完成 · 首段文本 · 首帧 PCM；不存录音","fontSize":18,"fontFamily":8,"lineHeight":1.25,"strokeColor":"#4c1d95"}
+    {
+      "type": "text",
+      "id": "title",
+      "x": 40,
+      "y": 24,
+      "width": 960,
+      "height": 45,
+      "text": "LiltCall · 私有一人对 AI 语音",
+      "originalText": "LiltCall · 私有一人对 AI 语音",
+      "fontSize": 32,
+      "fontFamily": 8,
+      "lineHeight": 1.25,
+      "strokeColor": "#172033"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "x": 42,
+      "y": 73,
+      "width": 1010,
+      "height": 30,
+      "text": "独立入口 /ai.html；AI 是另一个 WebRTC 端点，不在双人房间里。",
+      "originalText": "独立入口 /ai.html；AI 是另一个 WebRTC 端点，不在双人房间里。",
+      "fontSize": 19,
+      "fontFamily": 8,
+      "lineHeight": 1.25,
+      "strokeColor": "#475569"
+    },
+    {
+      "type": "rectangle",
+      "id": "boundary",
+      "x": 30,
+      "y": 128,
+      "width": 1040,
+      "height": 310,
+      "backgroundColor": "#faf5ff",
+      "fillStyle": "solid",
+      "strokeColor": "#c4b5fd",
+      "strokeWidth": 2,
+      "roundness": {
+        "type": 3
+      }
+    },
+    {
+      "type": "text",
+      "id": "boundary-label",
+      "x": 54,
+      "y": 143,
+      "width": 940,
+      "height": 30,
+      "text": "私有原型 · 浏览器音频送入 Pipecat，再返回合成语音",
+      "originalText": "私有原型 · 浏览器音频送入 Pipecat，再返回合成语音",
+      "fontSize": 21,
+      "fontFamily": 8,
+      "lineHeight": 1.25,
+      "strokeColor": "#6d28d9"
+    },
+    {
+      "type": "rectangle",
+      "id": "browser",
+      "x": 54,
+      "y": 213,
+      "width": 170,
+      "height": 100,
+      "backgroundColor": "#dbeafe",
+      "fillStyle": "solid",
+      "strokeColor": "#3b82f6",
+      "strokeWidth": 2,
+      "roundness": {
+        "type": 3
+      }
+    },
+    {
+      "type": "text",
+      "id": "browser-text",
+      "x": 74,
+      "y": 230,
+      "width": 140,
+      "height": 65,
+      "text": "浏览器\n麦克风 / 扬声器",
+      "originalText": "浏览器\n麦克风 / 扬声器",
+      "fontSize": 18,
+      "fontFamily": 8,
+      "lineHeight": 1.25,
+      "strokeColor": "#172033"
+    },
+    {
+      "type": "arrow",
+      "id": "browser-to-pipecat",
+      "x": 224,
+      "y": 263,
+      "width": 37,
+      "height": 0,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          37,
+          0
+        ]
+      ],
+      "strokeColor": "#3b82f6",
+      "strokeWidth": 3,
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "type": "rectangle",
+      "id": "pipecat",
+      "x": 261,
+      "y": 213,
+      "width": 170,
+      "height": 100,
+      "backgroundColor": "#ccfbf1",
+      "fillStyle": "solid",
+      "strokeColor": "#06b6d4",
+      "strokeWidth": 2,
+      "roundness": {
+        "type": 3
+      }
+    },
+    {
+      "type": "text",
+      "id": "pipecat-text",
+      "x": 280,
+      "y": 229,
+      "width": 145,
+      "height": 65,
+      "text": "Pipecat\nWebRTC ↔ PCM",
+      "originalText": "Pipecat\nWebRTC ↔ PCM",
+      "fontSize": 19,
+      "fontFamily": 8,
+      "lineHeight": 1.25,
+      "strokeColor": "#172033"
+    },
+    {
+      "type": "arrow",
+      "id": "pipecat-to-asr",
+      "x": 431,
+      "y": 263,
+      "width": 37,
+      "height": 0,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          37,
+          0
+        ]
+      ],
+      "strokeColor": "#06b6d4",
+      "strokeWidth": 3,
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "type": "rectangle",
+      "id": "asr",
+      "x": 468,
+      "y": 213,
+      "width": 170,
+      "height": 100,
+      "backgroundColor": "#ffedd5",
+      "fillStyle": "solid",
+      "strokeColor": "#f97316",
+      "strokeWidth": 2,
+      "roundness": {
+        "type": 3
+      }
+    },
+    {
+      "type": "text",
+      "id": "asr-text",
+      "x": 490,
+      "y": 229,
+      "width": 140,
+      "height": 65,
+      "text": "腾讯云 ASR\n语音 → 文本",
+      "originalText": "腾讯云 ASR\n语音 → 文本",
+      "fontSize": 19,
+      "fontFamily": 8,
+      "lineHeight": 1.25,
+      "strokeColor": "#172033"
+    },
+    {
+      "type": "arrow",
+      "id": "asr-to-llm",
+      "x": 638,
+      "y": 263,
+      "width": 37,
+      "height": 0,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          37,
+          0
+        ]
+      ],
+      "strokeColor": "#8b5cf6",
+      "strokeWidth": 3,
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "type": "rectangle",
+      "id": "llm",
+      "x": 675,
+      "y": 213,
+      "width": 170,
+      "height": 100,
+      "backgroundColor": "#ede9fe",
+      "fillStyle": "solid",
+      "strokeColor": "#8b5cf6",
+      "strokeWidth": 2,
+      "roundness": {
+        "type": 3
+      }
+    },
+    {
+      "type": "text",
+      "id": "llm-text",
+      "x": 702,
+      "y": 229,
+      "width": 135,
+      "height": 65,
+      "text": "硅基 Qwen\n流式文本",
+      "originalText": "硅基 Qwen\n流式文本",
+      "fontSize": 19,
+      "fontFamily": 8,
+      "lineHeight": 1.25,
+      "strokeColor": "#172033"
+    },
+    {
+      "type": "arrow",
+      "id": "llm-to-tts",
+      "x": 845,
+      "y": 263,
+      "width": 37,
+      "height": 0,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          37,
+          0
+        ]
+      ],
+      "strokeColor": "#8b5cf6",
+      "strokeWidth": 3,
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "type": "rectangle",
+      "id": "tts",
+      "x": 882,
+      "y": 213,
+      "width": 170,
+      "height": 100,
+      "backgroundColor": "#ffedd5",
+      "fillStyle": "solid",
+      "strokeColor": "#f97316",
+      "strokeWidth": 2,
+      "roundness": {
+        "type": 3
+      }
+    },
+    {
+      "type": "text",
+      "id": "tts-text",
+      "x": 904,
+      "y": 229,
+      "width": 140,
+      "height": 65,
+      "text": "腾讯云 TTS\n文本 → 音频",
+      "originalText": "腾讯云 TTS\n文本 → 音频",
+      "fontSize": 19,
+      "fontFamily": 8,
+      "lineHeight": 1.25,
+      "strokeColor": "#172033"
+    },
+    {
+      "type": "arrow",
+      "id": "return",
+      "x": 968,
+      "y": 313,
+      "width": 623,
+      "height": 67,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          67
+        ],
+        [
+          -623,
+          67
+        ],
+        [
+          -623,
+          0
+        ]
+      ],
+      "strokeColor": "#06b6d4",
+      "strokeWidth": 3,
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "type": "arrow",
+      "id": "pipecat-return-to-browser",
+      "x": 345,
+      "y": 313,
+      "width": 205,
+      "height": 35,
+      "points": [[0, 0], [0, 35], [-205, 35], [-205, 0]],
+      "strokeColor": "#06b6d4",
+      "strokeWidth": 3,
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "type": "text",
+      "id": "return-label",
+      "x": 348,
+      "y": 345,
+      "width": 535,
+      "height": 29,
+      "text": "增量 PCM → Pipecat → WebRTC 回传",
+      "originalText": "增量 PCM → Pipecat → WebRTC 回传",
+      "fontSize": 19,
+      "fontFamily": 8,
+      "lineHeight": 1.25,
+      "strokeColor": "#0e7490"
+    },
+    {
+      "type": "rectangle",
+      "id": "guard",
+      "x": 30,
+      "y": 463,
+      "width": 1040,
+      "height": 110,
+      "backgroundColor": "#fff7ed",
+      "fillStyle": "solid",
+      "strokeColor": "#fdba74",
+      "strokeWidth": 2,
+      "roundness": {
+        "type": 3
+      }
+    },
+    {
+      "type": "text",
+      "id": "guard-title",
+      "x": 52,
+      "y": 478,
+      "width": 1000,
+      "height": 30,
+      "text": "上线边界",
+      "originalText": "上线边界",
+      "fontSize": 21,
+      "fontFamily": 8,
+      "lineHeight": 1.25,
+      "strokeColor": "#9a3412"
+    },
+    {
+      "type": "text",
+      "id": "guard-note",
+      "x": 52,
+      "y": 511,
+      "width": 990,
+      "height": 55,
+      "text": "流式 ASR / TTS 只完成离线协议测试；公网 AI 未部署。\n真实服务商测试需显式计费开关、额度核对与用户同意。",
+      "originalText": "流式 ASR / TTS 只完成离线协议测试；公网 AI 未部署。\n真实服务商测试需显式计费开关、额度核对与用户同意。",
+      "fontSize": 18,
+      "fontFamily": 8,
+      "lineHeight": 1.25,
+      "strokeColor": "#78350f"
+    }
   ]
 }

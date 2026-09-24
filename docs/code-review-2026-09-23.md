@@ -1,6 +1,6 @@
 # 代码路径与逻辑核对（2026-09-23）
 
-> 以下是同日较早的代码梳理记录。当前部署增加了来宾显式 `/leave`、30 秒异常断线重连窗口及席位释放；**主动离开后原来宾身份不再保留**，刷新页面但不主动离开时才可在窗口内使用原会话重连。当前回归和部署证据见[测试结果](test-results.md)与[部署记录](deployment-2026-09-23.md)。
+> 以下是 2026-09-23 的历史代码梳理记录，不是当前完整审计。后续实现增加了来宾显式 `/leave`、30 秒异常断线重连窗口、席位释放、票据和消息上限；**主动离开后原来宾身份不再保留**，刷新页面但不主动离开时才可在窗口内使用原会话重连。当前回归和部署证据见[测试结果](test-results.md)与[部署记录](deployment-2026-09-23.md)。
 
 结论：本地双浏览器的建房、入会、直连音频、静音、退出、刷新重入和一次信令断线恢复均有自动化证据；不能据此宣称公网、真实设备或 TURN 中继可靠。此轮只修改本地代码，没有部署。
 
@@ -10,12 +10,12 @@
 |---|---|---|
 | `packages/protocol/src/index.ts` | 房间状态、期限、令牌哈希、角色和信令消息校验 | 浏览器媒体、网络传输 |
 | `apps/edge/src/index.ts` | HTTP 路由、来源与凭证检查、每房间 Durable Object、WebSocket 票据及转发 | 音频转发或录音 |
-| `apps/edge/src/ice.ts` | 生成短时 TURN 配置；失败时返回仅 STUN 并标注降级 | 保证 NAT 穿透 |
+| `apps/edge/src/ice.ts` | 生成短时 TURN 配置；未配置 TURN 时明确返回仅 STUN，TURN 配置不完整或服务异常时返回 `turn_unavailable`，不静默降级 | 保证 NAT 穿透 |
 | `apps/web/src/main.ts` | 页面状态、麦克风、会话、信令重连、WebRTC、静音与结束 | 持久保存通话内容 |
 | `apps/web/src/i18n.ts` | 英文/简体中文词条、语言选择 | 传输协议或房间语言同步 |
 | `apps/web/src/connection-diagnostics.ts` | 根据 `getStats()` 汇总已观察到的音频包和候选路径 | 人耳可听性或口到耳时延 |
 
-正常路径：房主点击 → 本地麦克风检查 → Worker 建房 → 复制带 fragment 秘密的邀请链接；来宾点击 → 麦克风检查 → 凭邀请加入。双方分别用成员令牌领取一次性 WebSocket 票据，Durable Object 验证成员并转发 SDP/ICE；浏览器建立 WebRTC 媒体连接。Worker/DO 不承载人声。房主关闭时服务端使房间和旧链接失效；来宾离开或刷新时房间身份不变，但旧媒体连接要重建。
+正常路径：房主点击 → 本地麦克风检查 → Worker 建房 → 复制带 fragment 秘密的邀请链接；来宾点击 → 麦克风检查 → 凭邀请加入。双方分别用成员令牌领取一次性 WebSocket 票据，Durable Object 验证成员并转发 SDP/ICE；浏览器建立 WebRTC 媒体连接。Worker/DO 不承载人声。房主关闭时服务端使房间和旧链接失效；来宾主动离开会释放身份，刷新或异常断开则可在短暂重连窗口内恢复，旧媒体连接需重建。
 
 ## 本轮修正的边界
 
@@ -30,4 +30,4 @@
 
 本轮 `npm run check`、`npm test`（17/17）、`npm run build`、Playwright（18/18）通过。Playwright 使用本机 Wrangler、两个独立 Chromium context 和假麦克风；覆盖英文/中文、混合语言、权限/存储/音量表失败、WebSocket 非对象消息、旧 ICE 返回和断线重连。受建房限流影响，本轮没有把全套测试高频重复多轮当作稳定性证明。
 
-仍未完成：真实麦克风的人耳双向可听、Safari/iPhone、跨运营商和受限网络、配置真实 TURN 后的强制 relay、网络切换/ICE restart 长时间稳定性、成本与 WebSocket 消息滥用压力。`Receiving audio` 表示浏览器已观察到 inbound RTP 包，**不等于持续可听或口到耳时延**。这些是公开发布前的验收项，不应从本地测试推断已通过。
+后来已完成本地和公开测试站的强制 TURN relay 自动化，但仍未完成：真实麦克风的人耳双向可听、真实 iPhone/跨运营商和受限网络的系统验收、网络切换/ICE restart 长时间稳定性、成本与 WebSocket 消息滥用压力。`Receiving audio` 表示浏览器已观察到 inbound RTP 包，**不等于持续可听或口到耳时延**。这些是对外宣称可靠性前的验收项，不应从本地测试推断已通过。
