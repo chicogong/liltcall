@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f4f6f3" />
+    <meta name="description" content="LiltCall — a private audio and video room for two." />
+    <title>LiltCall — audio and video calls for two</title>
+  </head>
+  <body>
+    <main id="app" class="shell" data-view="home">
+      <header class="masthead">
+        <div class="brand"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>LiltCall</span></div>
+        <div class="masthead-actions"><span class="masthead-note" data-i18n="mastheadNote">Calls for two</span><button class="language-button" id="language-button" type="button" aria-label="Switch to Chinese">中文</button></div>
+      </header>
+
+      <p class="notice" id="notice" role="status" aria-live="polite"></p>
+
+      <section class="landing-view" id="landing-view" aria-labelledby="page-title">
+        <div class="landing-content">
+          <p class="eyebrow" id="room-kicker" data-i18n="homeKicker">One link. Two people.</p>
+          <h1 id="page-title" tabindex="-1" data-i18n="homeTitle">A call that stays&#10;between you two.</h1>
+          <p class="landing-description" id="room-description" data-i18n="homeDescription">Create a room, share one link, and talk face to face. Direct when possible; TURN may relay media.</p>
+          <div class="landing-actions" id="landing-actions">
+            <button class="primary-button" id="create-button" type="button"><span data-i18n="startCall">Start a call</span><span aria-hidden="true">→</span></button>
+            <button class="primary-button" id="join-button" type="button" hidden><span id="join-button-label" data-i18n="joinThisCall">Join this call</span><span aria-hidden="true">→</span></button>
+            <p class="quiet-note" data-i18n="clickForMicrophone">Camera and microphone access are requested only after you click.</p>
+          </div>
+        </div>
+        <div class="landing-footnote"><span data-i18n="noInstall">No install</span><span data-i18n="noAccount">No account</span><span data-i18n="shortLivedRoom">Short-lived room</span></div>
+      </section>
+
+      <section class="prejoin-view" id="prejoin-view" aria-labelledby="preview-title" hidden>
+        <div class="prejoin-content">
+          <button class="back-button" id="back-button" type="button">← <span data-i18n="back">Back</span></button>
+          <p class="eyebrow" data-i18n="beforeCall">Before the call</p>
+          <h1 id="preview-title" tabindex="-1" data-i18n="createPreviewTitle">Check your camera and mic.</h1>
+          <p class="prejoin-description" id="preview-description" data-i18n="createPreviewDescription">See yourself and check your sound before creating a room.</p>
+          <div class="preview-tile" id="preview-tile">
+            <video id="preview-video" autoplay muted playsinline aria-label="Your camera preview" data-i18n-aria-label="cameraPreview"></video>
+            <div class="preview-placeholder" id="preview-placeholder"><span class="camera-glyph" aria-hidden="true"></span><span id="camera-preview-label" data-i18n="cameraOff">Camera off</span></div>
+            <span class="tile-corner-label" data-i18n="you">You</span>
+          </div>
+          <div class="mic-check" aria-label="Microphone check" data-i18n-aria-label="microphoneCheck">
+            <div class="mic-symbol" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div class="mic-copy"><strong data-i18n="microphone">Microphone</strong><span id="preview-status" role="status" data-i18n="requestingMicrophone">Requesting microphone access…</span></div>
+            <div class="meter" id="meter" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+          <button class="camera-preview-toggle" id="preview-camera-button" type="button" disabled aria-pressed="false"><span data-i18n="turnCameraOff">Turn camera off</span></button>
+          <div class="prejoin-actions">
+            <button class="primary-button" id="enter-button" type="button" disabled><span id="enter-button-label" data-i18n="createRoom">Create room</span><span aria-hidden="true">→</span></button>
+            <button class="secondary-button" id="retry-button" type="button" hidden data-i18n="tryMicrophoneAgain">Try microphone again</button>
+          </div>
+          <p class="quiet-note" data-i18n="microphonePrivacy">Your camera and microphone stay on this device until you enter the room.</p>
+        </div>
+      </section>
+
+      <section class="call-view" id="call-view" aria-labelledby="call-heading" hidden data-peer="joining">
+        <div class="call-topline">
+          <div class="room-identity"><span class="room-symbol" aria-hidden="true"></span><span id="call-room-label" data-i18n="privateVoiceRoom">Private voice room</span></div>
+          <span class="call-status"><span class="status-dot" aria-hidden="true"></span><span id="call-status" data-i18n="connecting">Connecting…</span></span>
+        </div>
+
+        <div class="call-stage">
+          <div class="remote-tile" id="remote-tile">
+            <video id="remote-video" autoplay muted playsinline aria-label="Other person's video" data-i18n-aria-label="remoteVideo"></video>
+            <div class="remote-placeholder" id="remote-placeholder">
+              <div class="avatar avatar-peer" aria-hidden="true">G<span class="participant-dot" id="peer-dot"></span></div>
+              <h1 id="call-heading" tabindex="-1" data-i18n="gettingRoomReady">Getting your room ready</h1>
+              <p class="call-message" id="call-message" data-i18n="connectingToRoom">Connecting to the room…</p>
+              <small id="peer-label" data-i18n="waitingToJoin">Waiting to join</small>
+              <div class="invite-panel" id="invite-panel" hidden>
+                <button class="invite-button" id="copy-button" type="button"><span data-i18n="copyInviteLink">Copy invite link</span><span aria-hidden="true">↗</span></button>
+                <div class="invite-field" id="invite-field"><label for="invite-link" data-i18n="privateLink">Your private link</label><input id="invite-link" type="text" readonly aria-label="Invite link" data-i18n-aria-label="inviteLink" /></div>
+              </div>
+            </div>
+            <span class="remote-name" data-i18n="otherPerson">Other person</span>
+          </div>
+          <div class="self-tile" id="self-tile">
+            <video id="local-video" autoplay muted playsinline aria-label="Your video" data-i18n-aria-label="yourVideo"></video>
+            <div class="self-placeholder" id="self-placeholder"><div class="avatar avatar-local" id="local-avatar" aria-hidden="true">Y</div><small id="local-label" data-i18n="microphoneOn">Microphone on</small></div>
+            <span class="self-name" data-i18n="you">You</span>
+          </div>
+        </div>
+
+        <div class="call-bottom">
+          <div class="call-controls">
+            <button class="control-button" id="mute-button" type="button" aria-pressed="false"><span class="control-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3m-4 0h8"/></svg></span><span id="mute-button-label" data-i18n="muteMic">Mute mic</span></button>
+            <button class="control-button" id="camera-button" type="button" aria-pressed="false"><span class="control-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="14" height="14" rx="3"/><path d="m16 9 6-3v12l-6-3"/></svg></span><span id="camera-button-label" data-i18n="turnCameraOff">Turn camera off</span></button>
+            <button class="control-button" id="copy-secondary-button" type="button" hidden data-i18n="copyLink">Copy link</button>
+            <button class="end-button" id="end-button" type="button" data-i18n="endRoom">End room</button>
+          </div>
+          <details class="call-info" id="call-info">
+            <summary data-i18n="connectionDetails">Connection details</summary>
+            <div class="detail-row"><span data-i18n="signaling">Signaling</span><span id="signal-state" data-i18n="signalConnecting">CONNECTING</span></div>
+            <div class="detail-row"><span data-i18n="microphone">Microphone</span><span id="mic-state" data-i18n="micOn">ON</span></div>
+            <div class="detail-row"><span>ICE</span><span id="ice-state">new</span></div>
+            <p id="ice-diagnostic" aria-live="polite"></p>
+            <p id="call-detail" aria-live="polite" data-i18n="signalingConnecting">Connecting to signaling…</p>
+            <p id="media-diagnostic" hidden></p>
+            <p id="media-note" hidden data-i18n="mediaStatsNote">ICE RTT is network round-trip time, not speaking-to-hearing delay. Received, lost, and freeze counts are cumulative for the current stream and may reset; — means unavailable.</p>
+          </details>
+        </div>
+      </section>
+
+      <footer class="footer"><span data-i18n="footerOneLink">One link. One conversation.</span><span data-i18n="footerHumanOnly">Human-only mode · AI is not listening</span></footer>
+    </main>
+    <audio id="remote-audio" autoplay playsinline></audio>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

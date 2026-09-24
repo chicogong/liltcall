@@ -1,0 +1,5 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/web",
+  "rewrites": [{ "source": "/r/:roomId", "destination": "/index.html" }]
+}

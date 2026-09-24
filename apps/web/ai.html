@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f4f6f3" />
+    <title>LiltCall — local AI audio probe</title>
+  </head>
+  <body>
+    <main class="ai-shell">
+      <header class="ai-header">
+        <a href="/" class="ai-brand" id="home-link">← LiltCall</a>
+        <button class="language-button" id="ai-language" type="button">中文</button>
+      </header>
+
+      <section class="ai-hero" aria-labelledby="ai-heading">
+        <p class="eyebrow" id="ai-kicker">LOCAL PROTOTYPE · NO MODEL KEYS</p>
+        <h1 id="ai-heading">Voice path, before the AI.</h1>
+        <p id="ai-description">This test connects your browser microphone to a Pipecat service over WebRTC. A short tone comes back only after the service receives real microphone samples. It does not transcribe, reason, or speak.</p>
+      </section>
+
+      <section class="ai-stage" aria-label="Voice connection" id="ai-stage" data-state="idle">
+        <div class="ai-orb" aria-hidden="true"><span></span><span></span><span></span></div>
+        <h2 id="ai-status" role="status" aria-live="polite">Ready to test</h2>
+        <p id="ai-hint">Click connect to grant microphone access. Headphones prevent feedback.</p>
+        <audio id="ai-audio" autoplay playsinline controls aria-label="Remote audio"></audio>
+      </section>
+
+      <div class="ai-actions">
+        <button class="primary-button" id="ai-connect" type="button" disabled><span id="ai-connect-label">Connect microphone</span><span aria-hidden="true">→</span></button>
+        <button class="secondary-button" id="ai-hangup" type="button" disabled>Hang up</button>
+      </div>
+      <p class="ai-error" id="ai-error" role="alert" hidden></p>
+      <p class="ai-footnote" id="ai-footnote">Local-only: the Vite development server proxies signaling to 127.0.0.1:7860. The existing two-person call and deployed site are unchanged.</p>
+      <details class="ai-details"><summary id="ai-details-label">Connection details</summary><p id="ai-metrics">—</p></details>
+    </main>
+    <script type="module" src="/src/ai.ts"></script>
+  </body>
+</html>

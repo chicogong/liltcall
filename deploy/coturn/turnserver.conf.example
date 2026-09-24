@@ -1,0 +1,36 @@
+# Example only: replace every REPLACE_* value for your own deployment.
+listening-ip=REPLACE_PRIVATE_IP
+relay-ip=REPLACE_PRIVATE_IP
+external-ip=REPLACE_PUBLIC_IP/REPLACE_PRIVATE_IP
+listening-port=REPLACE_TURN_PORT
+min-port=REPLACE_MIN_RELAY_PORT
+max-port=REPLACE_MAX_RELAY_PORT
+
+realm=liltcall
+fingerprint
+use-auth-secret
+static-auth-secret=REPLACE_WITH_FRESH_64_HEX_SECRET
+
+# Set quotas and bandwidth from your own capacity plan.
+user-quota=REPLACE_USER_QUOTA
+total-quota=REPLACE_TOTAL_QUOTA
+max-bps=REPLACE_MAX_BPS
+bps-capacity=REPLACE_BPS_CAPACITY
+
+# TURN credentials must not grant access to the server's private network.
+denied-peer-ip=0.0.0.0-0.255.255.255
+denied-peer-ip=10.0.0.0-10.255.255.255
+denied-peer-ip=100.64.0.0-100.127.255.255
+denied-peer-ip=127.0.0.0-127.255.255.255
+denied-peer-ip=169.254.0.0-169.254.255.255
+denied-peer-ip=172.16.0.0-172.31.255.255
+denied-peer-ip=192.168.0.0-192.168.255.255
+denied-peer-ip=224.0.0.0-255.255.255.255
+no-multicast-peers
+
+# This example does not configure TLS; add it if your deployment requires it.
+no-tls
+no-dtls
+no-cli
+no-rfc5780
+log-file=syslog
