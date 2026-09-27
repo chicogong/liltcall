@@ -11,6 +11,7 @@ Before opening a pull request, run the checks relevant to your change:
 ```bash
 npm ci
 npm run check
+npm run check:docs
 npm test
 npm run build
 npm run test:e2e

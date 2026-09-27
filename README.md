@@ -58,6 +58,7 @@ npx wrangler deploy --config apps/edge/wrangler.production.jsonc
 
 ```bash
 npm run check
+npm run check:docs
 npm test
 npm run build
 npx playwright install chromium webkit
@@ -67,6 +68,8 @@ npm run test:e2e
 浏览器端到端测试使用独立上下文、合成音视频和本地 Worker，覆盖双向 RTP、画面解码、房间权限、重入、信令重连及中英文界面。2026-09-24 的开源首发候选在本机为 **34 通过、1 项按 TURN 凭据配置跳过**；[GitHub CI](https://github.com/chicogong/liltcall/actions)也通过了该提交的 Linux E2E。若本机已安装 coturn，可运行 `npm run test:relay:local` 验证临时回环服务器上的强制中转。生产冒烟命令 `npm run smoke:production`、`npm run test:relay:production` 和 `npm run test:relay:production:tcp` 会创建公网测试房间，**不要**把它们当作普通本地测试反复执行。
 
 这些测试不能代替不同真实设备/网络上的双向真人验收。[完整测试结果与证据边界](docs/test-results.md) · [指标和手工验收方案](docs/test-plan.md)。
+
+`npm run check:docs` 自动检查本仓库 Markdown 的相对链接、标题锚点、图源/PNG 配对和不应发布的文件名；不检查远端网址是否可用，也不替代秘密扫描或图片排版检查。Python 3.12 与 uv 可用时，`npm run test:ai:contracts` 运行无真实服务商调用的 AI 协议/配置合同测试。CI 分别运行网页 E2E 与离线 AI 合同测试，不注入云账号密钥，不执行真实 AI 或生产站点测试。
 
 ## 独立的 AI 语音原型
 
