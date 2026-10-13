@@ -8,6 +8,8 @@ if (relayProduction && localTurn) throw new Error("Local TURN must not be used a
 
 export default defineConfig({
   testDir: "./tests/e2e",
+  // Public relay runs must not remove traces from a simultaneous local suite.
+  outputDir: relayProduction ? "./test-results/production-relay" : "./test-results/local",
   timeout: 40_000,
   retries: 0,
   use: {

@@ -9,6 +9,7 @@ test("real TURN relay carries bidirectional audio and video", async ({ browser }
   const guest = await browser.newContext({ permissions: ["microphone", "camera"] });
   await guest.addInitScript(stripSelectedPairId);
   let hostPage: Page | undefined;
+  let guestPage: Page | undefined;
   try {
     for (const context of [host, guest]) {
       if (tcpOnly) {
@@ -29,13 +30,25 @@ test("real TURN relay carries bidirectional audio and video", async ({ browser }
         Object.defineProperty(globalThis, "RTCPeerConnection", {
           configurable: true,
           value: class RelayOnlyPeerConnection extends BrowserPeerConnection {
-            constructor(config?: RTCConfiguration) { super({ ...config, iceTransportPolicy: "relay" }); }
+            constructor(config?: RTCConfiguration) {
+              super({ ...config, iceTransportPolicy: "relay" });
+              const tracked = window as Window & { __relayTestPeer?: RTCPeerConnection; __relayTestErrors?: number[]; __relayTestErrorKinds?: string[] };
+              tracked.__relayTestPeer = this;
+              tracked.__relayTestErrors = [];
+              tracked.__relayTestErrorKinds = [];
+              this.addEventListener("icecandidateerror", (event) => {
+                tracked.__relayTestErrors?.push(event.errorCode);
+                // Classify known reasons without exposing browser-provided raw text.
+                tracked.__relayTestErrorKinds?.push(/bandwidth quota/i.test(event.errorText) ? "bandwidth-quota"
+                  : /allocation quota/i.test(event.errorText) ? "allocation-quota" : "other");
+              });
+            }
           },
         });
       });
     }
     hostPage = await host.newPage();
-    const guestPage = await guest.newPage();
+    guestPage = await guest.newPage();
     await hostPage.goto("/");
     await hostPage.getByRole("button", { name: "Start a call" }).click();
     await hostPage.getByRole("button", { name: "Create room" }).click();
@@ -53,10 +66,43 @@ test("real TURN relay carries bidirectional audio and video", async ({ browser }
       if (page === guestPage) await expect(page.locator("#media-diagnostic")).toContainText("ICE RTT — ms");
       await expect.poll(() => page.locator("#remote-video").evaluate((video: HTMLVideoElement) => video.videoWidth), { timeout: 15_000 }).toBeGreaterThan(0);
     }
+    const closed = hostPage.waitForResponse((response) => response.request().method() === "POST"
+      && new URL(response.url()).pathname.endsWith("/close"));
     await hostPage.getByRole("button", { name: "End room" }).click();
+    expect((await closed).status()).toBe(200);
+    for (const page of [hostPage, guestPage]) {
+      await expect(page.locator("#app")).toHaveAttribute("data-view", "home");
+      await expect.poll(() => page.evaluate(() => (window as Window & { __relayTestPeer?: RTCPeerConnection })
+        .__relayTestPeer?.signalingState)).toBe("closed");
+    }
+  } catch (error) {
+    // Only anonymous state/counters: never log SDP, addresses, URLs or credentials.
+    for (const [side, page] of [["host", hostPage], ["guest", guestPage]] as const) {
+      if (!page) continue;
+      const diagnostic = await page.evaluate(async () => {
+        const pc = (window as Window & { __relayTestPeer?: RTCPeerConnection }).__relayTestPeer;
+        if (!pc) return null;
+        const candidates: object[] = [];
+        const pairs: object[] = [];
+        (await pc.getStats()).forEach((report) => {
+          if (report.type === "local-candidate" || report.type === "remote-candidate") {
+            candidates.push({ side: report.type, type: report.candidateType, protocol: report.protocol, relayProtocol: report.relayProtocol });
+          }
+          if (report.type === "candidate-pair") {
+            pairs.push({ state: report.state, nominated: !!report.nominated, requests: report.requestsSent ?? 0, responses: report.responsesReceived ?? 0 });
+          }
+        });
+        const errors = (window as Window & { __relayTestErrors?: number[] }).__relayTestErrors ?? [];
+        const errorKinds = (window as Window & { __relayTestErrorKinds?: string[] }).__relayTestErrorKinds ?? [];
+        return { connection: pc.connectionState, ice: pc.iceConnectionState, gathering: pc.iceGatheringState, signaling: pc.signalingState, errors, errorKinds, candidates, pairs };
+      }).catch(() => null);
+      console.log("RELAY_ICE_DIAGNOSTIC", JSON.stringify({ side, tcpOnly, diagnostic }));
+    }
+    throw error;
   } finally {
     if (hostPage && await hostPage.locator("#app").getAttribute("data-view").catch(() => null) === "call") {
       await hostPage.getByRole("button", { name: "End room" }).click({ timeout: 3000 }).catch(() => {});
+      await expect(hostPage.locator("#app")).toHaveAttribute("data-view", "home", { timeout: 3000 }).catch(() => {});
     }
     await host.close();
     await guest.close();

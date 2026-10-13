@@ -14,6 +14,8 @@ static-auth-secret=REPLACE_WITH_FRESH_64_HEX_SECRET
 # Set quotas and bandwidth from your own capacity plan.
 user-quota=REPLACE_USER_QUOTA
 total-quota=REPLACE_TOTAL_QUOTA
+# coturn reserves max-bps for EACH allocation, including unused ICE candidates.
+# Keep max-bps * total-quota below bps-capacity.
 max-bps=REPLACE_MAX_BPS
 bps-capacity=REPLACE_BPS_CAPACITY
 

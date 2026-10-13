@@ -8,7 +8,7 @@
 
 LiltCall 是一个无需注册、面向两人的浏览器 WebRTC 通话开源项目。房主创建短期房间并分享邀请链接，来宾点击加入。Cloudflare Worker 和 Room Durable Object 负责房间状态与信令；音视频由浏览器间的 WebRTC 传输，ICE 可选择直连，也可在网络不允许直连时使用自建 coturn 中转。
 
-**当前仍是实验项目。** [网页测试站](https://liltcall.vercel.app/)和 [Worker 健康检查](https://liltcall-api.aimake.cc/healthz)已有部署，但不保证始终与本仓库最新提交同步。本机合成媒体的双向直连、强制 TURN/TCP 和移动尺寸 WebKit 测试通过；曾有手机来宾反馈能听到声音、看到画面。两台真机异网的双向真人语音、画面稳定性及口到耳延迟**尚未完成验收**，不能据此宣称所有网络都能接通。
+**当前仍是实验项目。** [网页测试站](https://liltcall.vercel.app/)和 [Worker 健康检查](https://liltcall-api.aimake.cc/healthz)于 2026-09-27 更新；2026-09-28 修复了 coturn 的带宽预留配置冲突。此前的 `486` 已定位为带宽预留额度耗尽，修复后普通 TURN 连续 2 次、TCP 连续 5 次及随后再开 TCP 均通过，见[测试证据](docs/test-results.md)。此前的同机直连和移动尺寸 WebKit 测试也通过。两台真机异网的双向真人语音、画面稳定性及口到耳延迟**尚未完成验收**，不能据此宣称所有网络都能接通。
 
 ## 一张图看懂
 
@@ -73,7 +73,7 @@ npm run test:e2e
 
 ## 独立的 AI 语音原型
 
-`apps/web/ai.html` 与 `apps/ai` 是**私有的一人对 AI 原型**，不属于上述双人房间，也没有公网 AI 入口。浏览器把音频通过 WebRTC 送到作为另一个端点的 Pipecat 服务；本地路径可使用 Whisper → Ollama/Qwen → Pocket TTS，另有需显式费用开关的腾讯云 ASR/TTS 与硅基流动 LLM 适配器。流式 ASR/TTS 目前只有离线协议测试，不能宣称真实服务商首包延迟或公开可用。双人通话不会自动把声音发给 AI。
+`apps/web/ai.html` 与 `apps/ai` 是**一人对 AI 的独立原型源码**，不属于上述双人房间；源码已公开，但 AI 服务没有公网部署入口。浏览器把音频通过 WebRTC 送到作为另一个端点的 Pipecat 服务；本地路径可使用 Whisper → Ollama/Qwen → Pocket TTS，另有需显式费用开关的腾讯云 ASR/TTS 与硅基流动 LLM 适配器。流式 ASR/TTS 目前只有离线协议测试，不能宣称真实服务商首包延迟或公开可用。双人通话不会自动把声音发给 AI。
 
 [AI 架构图与代码边界](docs/ai-code-architecture.md) · [可编辑源图](docs/diagrams/ai-streaming-architecture.excalidraw) · [本地运行](docs/ai-local-spike.md) · [流式测试边界](docs/ai-streaming.md) · [延迟定义](docs/ai-latency.md)。
 

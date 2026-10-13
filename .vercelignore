@@ -1,0 +1,27 @@
+# Exclude local operations, test output and private AI assets from uploads.
+.git/
+.vercel/
+node_modules/
+dist/
+.wrangler/
+docs/
+tests/
+scripts/
+deploy/
+.github/
+playwright-report/
+test-results/
+**/.venv/**
+**/__pycache__/**
+**/.wrangler/**
+apps/ai/**
+apps/edge/**
+apps/web/ai.html
+apps/web/src/ai*.ts
+apps/web/src/ai.css
+**/.env*
+**/.dev.vars*
+**/*.pem
+**/*.key
+**/*.p8
+**/*.p12
